@@ -23,24 +23,32 @@ const Item = styled(Paper)(({theme}) => ({
     color: theme.palette.text.secondary,
 }));
 
-const gridRow = (row: boolean[], idx: number) => <Grid key={idx} container item spacing={3}>
+const gridRow = (row: string[], idx: number) => <Grid key={idx} container item spacing={3}>
     {row.map((cell, cIdx) => gridCell(cell, cIdx))}
 </Grid>
 
 
-const gridCell = (cell: boolean, idx: number) => {
+const gridCell = (cell: string, idx: number) => {
     return <Grid key={idx} item xs={1}>
-        <Item>Item</Item>
+        <Item>{cell}</Item>
     </Grid>;
 }
 
 
 export const ElementsGrid: React.FC<ElementsGridProps> = ({columns, rows, gridData}) => {
-    const gridItems: boolean[][] = [];
+    const gridItems: string[][] = [];
+    console.log('============', gridData);
     for (let i = 0; i < rows; i++) {
+        const rowData = gridData[i + 1];
+        console.log(rowData)
         gridItems[i] = [];
         for (let j = 0; j < columns; j++) {
-            gridItems[i][j] = true;
+            if (!rowData) {
+                gridItems[i][j] = "False";
+                continue;
+            }
+            const cellData = rowData[j + 1];
+            gridItems[i][j] = cellData ? 'True' : 'False';
         }
     }
     return <Grid container spacing={2} columns={columns}>
