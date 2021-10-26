@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "https://dkataiev.dev/elements-drawer/static/css/main.6dea0f05.chunk.css",
+    "main.js": "https://dkataiev.dev/elements-drawer/static/js/main.cccf38c0.chunk.js",
+    "main.js.map": "https://dkataiev.dev/elements-drawer/static/js/main.cccf38c0.chunk.js.map",
+    "runtime-main.js": "https://dkataiev.dev/elements-drawer/static/js/runtime-main.8911ec41.js",
+    "runtime-main.js.map": "https://dkataiev.dev/elements-drawer/static/js/runtime-main.8911ec41.js.map",
+    "static/js/2.224ba6da.chunk.js": "https://dkataiev.dev/elements-drawer/static/js/2.224ba6da.chunk.js",
+    "static/js/2.224ba6da.chunk.js.map": "https://dkataiev.dev/elements-drawer/static/js/2.224ba6da.chunk.js.map",
+    "static/js/3.27a402eb.chunk.js": "https://dkataiev.dev/elements-drawer/static/js/3.27a402eb.chunk.js",
+    "static/js/3.27a402eb.chunk.js.map": "https://dkataiev.dev/elements-drawer/static/js/3.27a402eb.chunk.js.map",
+    "index.html": "https://dkataiev.dev/elements-drawer/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "https://dkataiev.dev/elements-drawer/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.224ba6da.chunk.js.LICENSE.txt": "https://dkataiev.dev/elements-drawer/static/js/2.224ba6da.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8911ec41.js",
+    "static/js/2.224ba6da.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.cccf38c0.chunk.js"
+  ]
+}
