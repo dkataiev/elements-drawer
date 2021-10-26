@@ -6,20 +6,24 @@ import MenuItem from "@mui/material/MenuItem";
 const TEXT_INPUT = 'TEXT_INPUT'
 const SELECT = 'SELECT'
 
-export interface GridCell {
-    title: string;
-    type: string;
-    value: string;
-}
-
 export interface ElementsGridProps {
     columns: number;
     rows: number;
     gridData: { [key: number]: GridCell[] };
 }
 
-const emptyCell = () => <TextField variant="outlined"
-                                   size="small" disabled/>
+export interface GridCell {
+    title: string;
+    type: string;
+    value: string;
+}
+
+const emptyCell = () => <TextField
+    fullWidth
+    value=''
+    disabled
+    size="small"
+/>
 
 const selectField = (cell: GridCell) => <TextField
     select

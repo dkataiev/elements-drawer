@@ -5,13 +5,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import {ElementsGrid, ElementsGridProps, GridCell} from "./components/ElementsGrid";
 
-
 function App() {
 
     const [definition, setDefinition] = useState<ElementsGridProps>({rows: 0, columns: 0, gridData: {}});
 
     const parseDefinitions = (defStr: string): void => {
-        const newDef = {...definition}
+        const gridData = {} as { [key: number]: GridCell[] }
+        const newDef = {...definition, gridData}
         defStr.split("\n").forEach((str) => {
             if (!str) {
                 return;
