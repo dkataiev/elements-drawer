@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, {useEffect} from "react";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -25,16 +25,17 @@ const emptyCell = () => <TextField
     size="small"
 />
 
-const selectField = (cell: GridCell) => <TextField
-    select
-    fullWidth
-    helperText={cell.title}
-    size="small">
-    {
-        cell.value.split(",")
-            .map((opt) => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)
-    }
-</TextField>
+const selectField = (cell: GridCell) => {
+    const opts = cell.value.split(",");
+    return <TextField
+        select
+        fullWidth
+        helperText={cell.title}
+        value={opts[0]}
+        size="small">
+        {opts.map((opt) => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)}
+    </TextField>
+}
 
 
 const textField = (cell: GridCell) => <TextField
@@ -64,6 +65,10 @@ const gridRow = (row: GridCell[], idx: number) => <Grid key={idx} container item
 
 
 export const ElementsGrid: React.FC<ElementsGridProps> = ({columns, rows, gridData}) => {
+    useEffect(() => {
+        console.log("ElementsGrid created");
+        return () => console.log("ElementsGrid destroyed");
+    }, []);
     const gridItems: GridCell[][] = [];
     for (let i = 0; i < rows; i++) {
         const rowData = gridData[i + 1];
@@ -76,6 +81,7 @@ export const ElementsGrid: React.FC<ElementsGridProps> = ({columns, rows, gridDa
             gridItems[i][j] = rowData[j + 1];
         }
     }
+    console.log("ElementsGrid updated");
     return <Grid container spacing={2} columns={columns}>
         {gridItems.map((row, idx) => gridRow(row, idx))}
     </Grid>;

@@ -12,7 +12,7 @@ function App() {
 
     const parseDefinitions = (defStr: string): void => {
         const gridData = {} as { [key: number]: GridCell[] }
-        const newDef = {...definition, gridData}
+        const newDef = { rows:0, columns:0, gridData}
         defStr.split("\n").forEach((str) => {
             if (!str) {
                 return;
