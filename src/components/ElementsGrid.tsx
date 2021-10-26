@@ -1,8 +1,10 @@
 import Grid from "@mui/material/Grid";
 import React from "react";
-import {styled} from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 
+const TEXT_INPUT = 'TEXT_INPUT'
+const SELECT = 'SELECT'
 
 export interface GridCell {
     title: string;
@@ -16,39 +18,58 @@ export interface ElementsGridProps {
     gridData: { [key: number]: GridCell[] };
 }
 
-const Item = styled(Paper)(({theme}) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+const emptyCell = () => <TextField variant="outlined"
+                                   size="small" disabled/>
 
-const gridRow = (row: string[], idx: number) => <Grid key={idx} container item spacing={3}>
+const selectField = (cell: GridCell) => <TextField
+    select
+    fullWidth
+    helperText={cell.title}
+    size="small">
+    {
+        cell.value.split(",")
+            .map((opt) => <MenuItem key={opt} value={opt}>{opt}</MenuItem>)
+    }
+</TextField>
+
+
+const textField = (cell: GridCell) => <TextField
+    fullWidth
+    helperText={cell.title}
+    value={cell.value}
+    size="small"
+/>
+
+
+const gridCellElement = (cell: GridCell) => {
+    if (!cell) {
+        return emptyCell();
+    }
+    return cell.type === TEXT_INPUT ? textField(cell) : selectField(cell);
+}
+
+const gridCell = (cell: GridCell, idx: number) => {
+    return <Grid key={idx} item xs={1}>
+        {gridCellElement(cell)}
+    </Grid>;
+}
+
+const gridRow = (row: GridCell[], idx: number) => <Grid key={idx} container item spacing={3}>
     {row.map((cell, cIdx) => gridCell(cell, cIdx))}
 </Grid>
 
 
-const gridCell = (cell: string, idx: number) => {
-    return <Grid key={idx} item xs={1}>
-        <Item>{cell}</Item>
-    </Grid>;
-}
-
-
 export const ElementsGrid: React.FC<ElementsGridProps> = ({columns, rows, gridData}) => {
-    const gridItems: string[][] = [];
-    console.log('============', gridData);
+    const gridItems: GridCell[][] = [];
     for (let i = 0; i < rows; i++) {
         const rowData = gridData[i + 1];
-        console.log(rowData)
         gridItems[i] = [];
         for (let j = 0; j < columns; j++) {
             if (!rowData) {
-                gridItems[i][j] = "False";
+                gridItems[i][j] = null as any;
                 continue;
             }
-            const cellData = rowData[j + 1];
-            gridItems[i][j] = cellData ? 'True' : 'False';
+            gridItems[i][j] = rowData[j + 1];
         }
     }
     return <Grid container spacing={2} columns={columns}>

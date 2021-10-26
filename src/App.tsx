@@ -50,25 +50,17 @@ function App() {
         parseDefinitions(definitionsStr);
     };
 
-    const data = "2;1;gender;SELECT;Male,Female\n" +
-        "6;1;First Name;TEXT_INPUT;Enter your first name\n " +
-        "2;7;marital status;SELECT;Single,Maried,Divorced\n" +
-        "1;2;Last Name;TEXT_INPUT;Enter your last name\n"
-
     return (
         <React.Fragment>
             <CssBaseline/>
             <Container maxWidth="md">
                 <Box>
                     <TextField
-                        id="outlined-multiline-static"
-                        label="Elements Definition"
                         margin="normal"
                         multiline
                         fullWidth
                         rows={10}
                         onChange={handleDefinitionChange}
-                        value={data}
                     />
                     <ElementsGrid {...definition}/>
                 </Box>
